@@ -32,41 +32,65 @@ namespace Prueba_login
 
         private void FacebookButton_Click(object sender, System.EventArgs e)
         {
-            throw new System.NotImplementedException();
+
+            var auth = new OAuth2Authenticator(
+                clientId: "1179568445482769",
+                scope: "",
+                authorizeUrl: new System.Uri("https://m.facebook.com/dialog/oauth/"),
+                redirectUrl: new System.Uri("http://www.facebook.com/connect/login_success.html"));
+            
+            auth.Completed += FaceBookAuth_CompletedAsync;
+            var ui= auth.GetUI(this);
+            StartActivity(ui); 	
+            
+
         }
 
-         void TwiterButton_Click(object sender, System.EventArgs e)
-        {
-            var auth = new OAuth1Authenticator(
-                consumerKey: "XJVrM50CAFG6BClyvKnFGut3u",
-                consumerSecret: "bAqZ2jskVoRRbwiamq4LqdgO0dQk1qIsCJ9KCxzpbDVzi0L0OI",
-                requestTokenUrl: new System.Uri("https://api.twitter.com/oauth/request_token"),
-                authorizeUrl: new System.Uri("https://api.twitter.com/oauth/authorize"), 	
-                accessTokenUrl: new System.Uri("https://api.twitter.com/oauth/access_token"), 	
-                callbackUrl: new System.Uri("http://mobile.twitter.com"));
-    
-            {
-
-            };
-
-
-            auth.Completed += TwitterAuth_CompletedAsync;
-            var ui = auth.GetUI(this);
-            StartActivity(ui);
-        }
-
-         async void TwitterAuth_CompletedAsync(object sender, AuthenticatorCompletedEventArgs e)
+        private async void FaceBookAuth_CompletedAsync(object sender, AuthenticatorCompletedEventArgs e)
         {
             if (e.IsAuthenticated)
             {
-                var request = new OAuth1Request("GET", new System.Uri("http://mobile.twitter.com"),
+                var request = new OAuth2Request("GET", new System.Uri("https://graph.facebook.com/me?fields=name,picture"),
+                
                     null, e.Account);
 
                 var response = await request.GetResponseAsync();
                 var json = response.GetResponseText();
-                //var twitteruser = JsonConvert.DeserializeObject<TwitterUser>(json);
+            }
+        }
+
+            void TwiterButton_Click(object sender, System.EventArgs e)
+            {
+                var auth = new OAuth1Authenticator(
+                    consumerKey: "XJVrM50CAFG6BClyvKnFGut3u",
+                    consumerSecret: "bAqZ2jskVoRRbwiamq4LqdgO0dQk1qIsCJ9KCxzpbDVzi0L0OI",
+                    requestTokenUrl: new System.Uri("https://api.twitter.com/oauth/request_token"),
+                    authorizeUrl: new System.Uri("https://api.twitter.com/oauth/authorize"),
+                    accessTokenUrl: new System.Uri("https://api.twitter.com/oauth/access_token"),
+                    callbackUrl: new System.Uri("http://mobile.twitter.com"));
+
+                {
+
+                };
+
+
+                auth.Completed += TwitterAuth_CompletedAsync;
+                var ui = auth.GetUI(this);
+                StartActivity(ui);
+            }
+
+            async void TwitterAuth_CompletedAsync(object sender, AuthenticatorCompletedEventArgs e)
+            {
+                if (e.IsAuthenticated)
+                {
+                    var request = new OAuth1Request("GET", new System.Uri("http://mobile.twitter.com"),
+                        null, e.Account);
+
+                    var response = await request.GetResponseAsync();
+                    var json = response.GetResponseText();
+                    //var twitteruser = JsonConvert.DeserializeObject<TwitterUser>(json);
+                }
             }
         }
     }
-}
 
