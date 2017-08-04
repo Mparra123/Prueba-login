@@ -7,6 +7,7 @@ using Xamarin.Auth.Prueba_login;
 using Android.Graphics;
 using System;
 using System.Net;
+using Android.Content;
 
 namespace Prueba_login
 {
@@ -16,6 +17,13 @@ namespace Prueba_login
 
         public TextView txt;
         public ImageView image;
+
+        public string name;
+        public string id;
+        public string picture;
+        
+
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -42,7 +50,7 @@ namespace Prueba_login
 
         private void FacebookButton_Click(object sender, System.EventArgs e)
         {
-
+            
             var auth = new OAuth2Authenticator(
                 clientId: "1179568445482769",
                 scope: "",
@@ -51,8 +59,9 @@ namespace Prueba_login
             
             auth.Completed += FaceBookAuth_CompletedAsync;
             var ui= auth.GetUI(this);
-            StartActivity(ui); 	
-            
+            StartActivity(ui);
+
+        
 
         }
 
@@ -61,7 +70,7 @@ namespace Prueba_login
             if (e.IsAuthenticated)
             {
                 var request = new OAuth2Request("GET", new System.Uri("https://graph.facebook.com/me?fields=name,picture,cover,birthday"),
-                
+
                     null, e.Account);
 
                 var response = await request.GetResponseAsync();
@@ -70,20 +79,24 @@ namespace Prueba_login
                 //change and get the profile name
                 var faceUser = JsonConvert.DeserializeObject<FaceUser>(json);
 
-                var name = faceUser.name;
-                var id = faceUser.id;
-                var picture = faceUser.picture.data.url;
-                var cover = faceUser.cover.source;
+                name = faceUser.name;
+                //id = faceUser.id;
+                //picture = faceUser.picture.data.url;
 
 
-                txt.Text = name;
-                image.SetImageBitmap(GetImageBitFromUrl(picture));
+
+                //txt.Text = name;
+                //image.SetImageBitmap(GetImageBitFromUrl(picture));
+
+                 Toast.MakeText(this, "Login Success:"+ name, ToastLength.Long).Wait();//.show() try
+                 Intent intent = new Intent(this, typeof(FaceActivity));//other activity open
+                 StartActivity(intent);
                 
-        
-             
+
             }
         }
 
+        //bring image profile
         private Bitmap GetImageBitFromUrl(string url)
         {
             Bitmap imageBit = null;

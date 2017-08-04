@@ -21,7 +21,10 @@
 
     public class FaceUser
     {
-        public string name { get; set; }
+        public string name {
+            get;
+            set;
+        }
         public Picture picture { get; set; }
         public Cover cover { get; set; }
         public string id { get; set; }

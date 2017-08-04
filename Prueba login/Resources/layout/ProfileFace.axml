@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtProfileFace"
+        android:id="@+id/txtProfileFace2"
         android:hint="Profile" />
     <ImageView
         android:src="@drawable/faceico"
