@@ -59,11 +59,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FaceUser.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="FaceActivity.cs" />
-    <Compile Include="LinkeActivity.cs" />
     <Compile Include="TwtterActivity.cs" />
-    <Compile Include="ProfileActivity.cs" />
+    <Compile Include="LinkeActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

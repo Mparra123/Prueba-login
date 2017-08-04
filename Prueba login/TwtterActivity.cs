@@ -13,13 +13,20 @@ using Android.Widget;
 namespace Prueba_login
 {
     [Activity(Label = "Profile")]
-    public class ProfileActivity : Activity
+    public class TwtterActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            
+            //Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.ProfileTwtt);
+
+            TextView txt = FindViewById<TextView>(Resource.Id.txtProfileTwtt);
+            ImageView image = FindViewById<ImageView>(Resource.Id.imagetwtt);
+            
         }
     }
 }
+

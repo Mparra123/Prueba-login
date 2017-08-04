@@ -13,13 +13,22 @@ using Android.Widget;
 namespace Prueba_login
 {
     [Activity(Label = "Profile")]
-    public class ProfileActivity : Activity
+    public class FaceActivity : Activity
     {
+
+
+        public TextView txt;
+        public ImageView image;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
 
-            // Create your application here
+            //Set our view from the "main" layout resource
+            SetContentView(Resource.Layout.ProfileTwtt);
+
+            txt = FindViewById<TextView>(Resource.Id.txtProfileFace);
+            image = FindViewById<ImageView>(Resource.Id.imageFace);
         }
     }
 }

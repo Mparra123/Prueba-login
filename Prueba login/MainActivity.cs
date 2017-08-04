@@ -2,12 +2,19 @@
 using Android.Widget;
 using Android.OS;
 using Xamarin.Auth;
+using Newtonsoft.Json;
+using Xamarin.Auth.Prueba_login;
+using Android.Graphics;
+using System;
 
 namespace Prueba_login
 {
     [Activity(Label = "Prueba Redes Sociales", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
+
+        public TextView txt;
+        public ImageView image;
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -18,6 +25,8 @@ namespace Prueba_login
             Button twiterButton = FindViewById<Button>(Resource.Id.twitterButton);
             Button facebookButton = FindViewById<Button>(Resource.Id.facebookButton);
             Button linkendInButton = FindViewById<Button>(Resource.Id.linkedInButton);
+            txt = FindViewById<TextView>(Resource.Id.txtProfileFace);
+            image= FindViewById<ImageView>(Resource.Id.imageFace);
 
 
             twiterButton.Click += TwiterButton_Click;
@@ -50,16 +59,32 @@ namespace Prueba_login
         {
             if (e.IsAuthenticated)
             {
-                var request = new OAuth2Request("GET", new System.Uri("https://graph.facebook.com/me?fields=name,picture"),
+                var request = new OAuth2Request("GET", new System.Uri("https://graph.facebook.com/me?fields=name,picture,cover,birthday"),
                 
                     null, e.Account);
 
                 var response = await request.GetResponseAsync();
                 var json = response.GetResponseText();
+
+                //change and get the profile name
+                var faceUser = JsonConvert.DeserializeObject<FaceUser>(json);
+
+                var name = faceUser.name;
+                var id = faceUser.id;
+                var picture = faceUser.picture.data.url;
+                var cover = faceUser.cover.source;
+
+
+                txt.Text = name;
+                var hola = "hola";
+        
+             
             }
         }
 
-            void TwiterButton_Click(object sender, System.EventArgs e)
+        
+
+        void TwiterButton_Click(object sender, System.EventArgs e)
             {
                 var auth = new OAuth1Authenticator(
                     consumerKey: "XJVrM50CAFG6BClyvKnFGut3u",

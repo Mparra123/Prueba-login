@@ -3,31 +3,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <Button
-        android:text="Login to Twitter"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#00acee"
-        android:layout_marginBottom="4dp"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:id="@+id/twitterButton" />
-    <Button
-        android:id="@+id/facebookButton"
+        android:id="@+id/txtProfileLink"
+        android:hint="Profile" />
+    <ImageView
+        android:src="@drawable/inicon"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Login to Facebook"
-        android:background="#4267b2"
-        android:layout_marginBottom="4dp"
-        android:textColor="#ffffff"
-        android:textSize="24sp" />
-    <Button
-        android:id="@+id/linkedInButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Login to LinkedIn"
-        android:background="#273d6a"
-        android:layout_marginBottom="4dp"
-        android:textColor="#ffffff"
-        android:textSize="24sp" />
+        android:id="@+id/imageLinke" />
 </LinearLayout>

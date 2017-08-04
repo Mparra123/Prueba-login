@@ -12,8 +12,8 @@ using Android.Widget;
 
 namespace Prueba_login
 {
-    [Activity(Label = "Profile")]
-    public class ProfileActivity : Activity
+    [Activity(Label = "Profile Linkedi")]
+    public class LinkeActivity : Activity
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {

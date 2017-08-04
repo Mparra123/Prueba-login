@@ -30,4 +30,17 @@
         android:layout_marginBottom="4dp"
         android:textColor="#ffffff"
         android:textSize="24sp" />
+  
+  
+  <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtProfileFace"
+        android:hint="Profile" />
+    <ImageView
+        android:src="@drawable/faceico"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageFace" />
+  
 </LinearLayout>

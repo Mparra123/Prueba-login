@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/linearLayout1">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtProfileFace"
+        android:hint="Profile" />
     <ImageView
         android:src="@drawable/faceico"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView3" />
-    <AbsoluteLayout
-        android:minWidth="25px"
-        android:minHeight="25px"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/absoluteLayout1" />
+        android:id="@+id/imageFace2" />
 </LinearLayout>
