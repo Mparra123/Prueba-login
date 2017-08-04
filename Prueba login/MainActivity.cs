@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Xamarin.Auth.Prueba_login;
 using Android.Graphics;
 using System;
+using System.Net;
 
 namespace Prueba_login
 {
@@ -76,13 +77,29 @@ namespace Prueba_login
 
 
                 txt.Text = name;
-                var hola = "hola";
+                image.SetImageBitmap(GetImageBitFromUrl(picture));
+                
         
              
             }
         }
 
-        
+        private Bitmap GetImageBitFromUrl(string url)
+        {
+            Bitmap imageBit = null;
+
+            using (var webClient= new WebClient())
+            {
+                var imageBytes = webClient.DownloadData(url);
+                if (imageBytes != null && imageBytes.Length>0)
+                {
+                    imageBit = BitmapFactory.DecodeByteArray(imageBytes,0,imageBytes.Length);
+                }
+            }
+
+            return imageBit;
+
+        }
 
         void TwiterButton_Click(object sender, System.EventArgs e)
             {
